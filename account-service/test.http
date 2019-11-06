@@ -5,9 +5,19 @@ Content-Type: application/json
     "firstname":"Widjesh",
     "lastname":"bhaggan",
     "email":"wsbhaggan@mum.edu",
+    "password":"test",
     "address":"1000 N 4th Street",
     "payment":"Paypal"
 }
 
 ###
 GET http://localhost:3000/
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email":"wsbhaggan@mum.edu",
+    "password":"test"
+}
