@@ -1,4 +1,4 @@
-package models;
+package edu.mum.cs.product.service.models;
 
 
 import lombok.Data;
