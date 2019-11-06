@@ -1,0 +1,7 @@
+POST http://localhost:3004/creditcard
+Content-Type: application/json
+
+{
+    "number":"wsbhaggan@mum.edu",
+    "expirationdate":"test"
+}

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ProductServiceApplication<product-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "edu.mum.cs.product.service.ProductServiceApplication",
+            "projectName": "product-service",
+            "args": ""
+        }
+    ]
+}
