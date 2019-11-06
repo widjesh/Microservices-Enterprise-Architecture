@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Retrieve all the users
 app.get("/", (req, res) => {
-  User.findAll().then(users => {
+  User.findAll().then(users => { 
     res.json(users);
   });
 });
@@ -21,13 +21,14 @@ app.get("/", (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     console.log(req.body);
-    let { firstname, lastname, email, address } = req.body;
+    let { firstname, lastname, email, address,payment } = req.body;
     //Insert into table
     await User.create({
       firstname: firstname,
       lastname: lastname,
       email: email,
-      address: address
+      address: address,
+      payment: payment
     })
       .then(user => console.log("Saved User Successfully"))
       .catch(err => console.error(err));
