@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  shipping_service_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - shipping-service-network
+    depends_on:
+      - shipping_db_container
+    restart: always
+    ports:
+      - "3006:3006"
+  shipping_db_container:
+    image: mysql:latest
+    networks:
+      - shipping-service-network
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=hexakomb
+      - MYSQL_DATABASE=shipping_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=hexakomb
+networks:
+  shipping-service-network:
