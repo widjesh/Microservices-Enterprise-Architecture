@@ -1,0 +1,6 @@
+POST http://localhost:3005/banktransfer
+Content-Type: application/json
+
+{
+    "banknumber":"324534564"
+}

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  order_service_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - order-service-network
+    depends_on:
+      - order_db_container
+    restart: always
+    ports:
+      - "3002:3002"
+  order_db_container:
+    image: mysql:latest
+    networks:
+      - order-service-network
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=hexakomb
+      - MYSQL_DATABASE=order_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=hexakomb
+networks:
+  order-service-network:

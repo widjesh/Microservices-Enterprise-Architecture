@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  product_service_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - product-service-network
+    depends_on:
+      - product_db_container
+    restart: always
+    ports:
+      - "3001:3001"
+  product_db_container:
+    image: mysql:latest
+    networks:
+      - product-service-network
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=hexakomb
+      - MYSQL_DATABASE=product_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=hexakomb
+networks:
+  product-service-network:

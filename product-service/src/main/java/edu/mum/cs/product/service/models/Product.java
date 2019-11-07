@@ -9,13 +9,14 @@ import java.math.BigDecimal;
 /**
  * The type Product.
  */
-@Entity
 @Data
+@Entity
 @Table(name = "PRODUCTS")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private long id;
 
     @Column(name = "NAME", nullable = false)
@@ -28,6 +29,7 @@ public class Product {
     private int quantity;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "CATEGORY")
     private EProductCategory category;
 
 }
