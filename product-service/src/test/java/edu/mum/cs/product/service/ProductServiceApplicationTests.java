@@ -1,6 +1,5 @@
 package edu.mum.cs.product.service;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -8,12 +7,4 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 class ProductServiceApplicationTests {
-
-    /**
-     * Context loads.
-     */
-    @Test
-    void contextLoads() {
-    }
-
 }
