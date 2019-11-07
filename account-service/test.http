@@ -2,9 +2,10 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "firstname":"Widjesh",
+    "firstname":"Shiva",
     "lastname":"bhaggan",
     "email":"wsbhaggan@mum.edu",
+    "password":"test",
     "address":"1000 N 4th Street",
     "payment":"Paypal"
 }
