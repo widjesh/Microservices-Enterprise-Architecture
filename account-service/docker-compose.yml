@@ -1,0 +1,21 @@
+version: "2"
+services:
+  account-service:
+    image: account-service
+    ports:
+      - "3000:3000"
+    networks:
+      - account
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - account
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=node
+
+networks:
+  account:

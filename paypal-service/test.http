@@ -5,3 +5,12 @@ Content-Type: application/json
     "username":"wsbhaggan@mum.edu",
     "password":"test"
 }
+###
+
+POST http://192.168.64.5:32644/paypal
+Content-Type: application/json
+
+{
+    "username":"wsbhaggan@mum.edu",
+    "password":"test"
+}

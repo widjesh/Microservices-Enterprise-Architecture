@@ -14,3 +14,35 @@ Content-Type: application/json
 GET http://localhost:3000/
 
 ###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email":"wsbhaggan@mum.edu",
+    "password":"test"
+}
+
+###
+GET http://192.168.64.5:32019/
+
+###
+POST http://192.168.64.5:32019/register
+Content-Type: application/json
+
+{
+    "firstname":"Shiva",
+    "lastname":"bhaggan",
+    "email":"wsbhaggan@mum.edu",
+    "password":"test",
+    "address":"1000 N 4th Street",
+    "payment":"Paypal"
+}
+
+###
+POST http://192.168.64.5:32019/login
+Content-Type: application/json
+
+{
+    "email":"wsbhaggan@mum.edu",
+    "password":"test"
+}

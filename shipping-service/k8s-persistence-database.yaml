@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-service-db
+spec:
+  ports:
+    - protocol: TCP
+      port: 1
+      targetPort: shipping-service-db-port
+  selector:
+    app: shipping-service-db
+    tier: db
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-service-db
+spec:
+  selector:
+    matchLabels:
+      app: shipping-service-db
+      tier: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: shipping-service-db
+        tier: db
+    spec:
+      containers:
+        - image: mysql:5.6
+          name: shipping-service-db
+          env:
+            # Use secret in real usage
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: shipping-service-secrets
+                  key: mysql-root-password
+          ports:
+            - containerPort: 3306
+              name: shipping-service-db-port
+          volumeMounts:
+            - name: shipping-service-db-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: shipping-service-db-persistent-storage
+          persistentVolumeClaim:
+            claimName: shipping-service-pv-claim

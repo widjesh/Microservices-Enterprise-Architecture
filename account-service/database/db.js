@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('account_db','node','root',{
-    host : 'localhost',
+const connection = new Sequelize('node','node','root',{ //Locally node,node,root 
+  port : 3306,
+    host : 'localhost', //polling-app-mysql
     dialect : 'mysql',
     operatorAliases:false,
     pool:{
@@ -19,11 +20,11 @@ connection.authenticate()
   .catch(err => console.log(`Error: ${err}`));
 
   //Run this code to drop table 
-// connection.sync({
-//     force : true
-// }).then(()=>{
-//     console.log('Database & Table created');
-// })
+connection.sync({
+    force : true
+}).then(()=>{
+    console.log('Database & Table created');
+})
 
 
 module.exports = connection;

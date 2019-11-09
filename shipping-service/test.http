@@ -1,0 +1,11 @@
+POST http://192.168.64.5:30577/shipping/save
+Content-Type: application/json
+
+{
+    "customerId": "120",
+    "orderId": "10"
+}
+
+###
+
+GET http://192.168.64.5:30577/shipping/find

@@ -4,3 +4,10 @@ Content-Type: application/json
 {
     "banknumber":"324534564"
 }
+###
+POST http://192.168.64.5:30921/banktransfer
+Content-Type: application/json
+
+{
+    "banknumber":"32453456411"
+}
