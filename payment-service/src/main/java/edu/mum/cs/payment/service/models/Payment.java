@@ -20,6 +20,7 @@ public class Payment {
     private String orderNumber;
 
     @Column(name = "PAYMENT_TYPE")
-    private String paymentType;
+    @Enumerated(EnumType.STRING)
+    private EPaymentType paymentType;
 
 }

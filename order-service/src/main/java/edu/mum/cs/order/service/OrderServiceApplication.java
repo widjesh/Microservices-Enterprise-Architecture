@@ -8,10 +8,19 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * The type Order service application.
+ * @author nduwayofabrice
+ * @version 1.0
  */
 @SpringBootApplication
 public class OrderServiceApplication {
 
+    /**
+     * Rest template rest template.
+     *
+     * @param builder the builder
+     *
+     * @return the rest template
+     */
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();

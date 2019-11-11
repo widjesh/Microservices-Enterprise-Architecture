@@ -1,9 +1,9 @@
 package edu.mum.cs.payment.service.controller;
 
+import edu.mum.cs.payment.service.models.EPaymentType;
 import edu.mum.cs.payment.service.models.Payment;
 import edu.mum.cs.payment.service.repository.IPaymentRepository;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import edu.mum.cs.payment.service.template.MessageTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -45,10 +45,10 @@ public class PaymentController {
     private String bankServiceIp;
 
     @Value("${BANK_SERVICE_PORT:3005}")
-    private String bankCardServicePort;
+    private String bankServicePort;
 
-    @Value("${PAYMENT_TYPE:bank}")
-    private String paymentType;
+    private static final String PROTOCOL = "http://";
+
 
     /**
      * Instantiates a new Payment controller.
@@ -62,21 +62,33 @@ public class PaymentController {
         this.restTemplate = restTemplate;
     }
 
-
-    /**
-     * Payment made string.
-     *
-     * @param payment the payment
-     * @param token   the token
-     *
-     * @return the string
-     */
     @PostMapping
-    public String paymentMade(@RequestBody Payment payment, @RequestHeader (name="Authorization") String token){
-        Claims claims = Jwts.parser().setSigningKey("VE9QU0VDUkVU").parseClaimsJws(token.substring(7)).getBody();
-        String email = claims.get("email").toString();
+    public String paymentMade(@RequestBody Payment payment) {
+        String url = generateUrl(payment.getPaymentType());
+        MessageTemplate messageTemplate  = restTemplate.postForObject(url, null, MessageTemplate.class);
+        if(messageTemplate != null && messageTemplate.getMessage() != null
+                && messageTemplate.getMessage().toLowerCase().contains("successfully")) {
+            this.paymentRepository.save(payment);
+            return "Payment recorded successfully";
+        }else{
+            return "Payment not recorded successfully";
+        }
+    }
 
-        return email;
+    private String generateUrl(EPaymentType paymentMode) {
+        String address;
+        if (paymentMode.equals(EPaymentType.BANK_TRANSFER))
+            address = PROTOCOL + bankServiceIp + ":" + bankServicePort + "/" +
+                    EPaymentType.BANK_TRANSFER.getDescription();
+        else if (paymentMode.equals(EPaymentType.CREDIT_CARD))
+            address = PROTOCOL + creditCardServiceIp + ":" + creditCardServicePort + "/" +
+                    EPaymentType.CREDIT_CARD.getDescription();
+        else
+            address = PROTOCOL + bankServiceIp + ":" + bankServicePort + "/" +
+                    EPaymentType.BANK_TRANSFER.getDescription();
+        return address;
     }
 
 }
+
+
