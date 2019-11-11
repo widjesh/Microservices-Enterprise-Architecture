@@ -6,8 +6,7 @@ const user = db.define("user", {
   lastname: Sequelize.TEXT,
   email: Sequelize.TEXT,
   password : Sequelize.TEXT,
-  address: Sequelize.TEXT,
-  payment : Sequelize.TEXT
+  address: Sequelize.TEXT
 });
 
 module.exports = user;

@@ -36,17 +36,4 @@ spec:
                 secretKeyRef:
                   name: account-service-secrets
                   key: service-api-key
-            #MYSQL
-            - name: MYSQL_HOST
-              value: account-service-db
-
-            - name: MYSQL_USER
-              value: root
-            - name: MYSQL_PORT
-              value: "3000"
-
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: account-service-secrets
-                  key: mysql-root-password
+           

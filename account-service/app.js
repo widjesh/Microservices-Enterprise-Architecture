@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   User.findAll().then(users => {
     res.json(users);
+    
   });
 });
 
@@ -73,6 +74,14 @@ app.post("/login", async (req, res) => {
       }
     });
   } catch (err) {}
+});
+
+app.get('/find/:email',async(req,res)=>{
+  User.findAll({
+    email:req.params.email
+  }).then((users)=>{
+    res.json(users[0]);
+  });
 });
 
 app.listen(port, () => {

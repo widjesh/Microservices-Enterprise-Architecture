@@ -1,4 +1,8 @@
 package edu.mum.cs.order.service.config;
 
-public class WebSecurity {
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class WebSecurity{
 }

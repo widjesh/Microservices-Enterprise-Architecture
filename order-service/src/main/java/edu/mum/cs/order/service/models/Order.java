@@ -36,4 +36,6 @@ public class Order {
     @Transient
     private List<Product> productList;
 
+    @Transient
+    private List<OrderItem> orderItemList;
 }

@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('node','node','root',{ //Locally node,node,root 
+const connection = new Sequelize('node','root','Widjesh12',{ 
   port : 3306,
-    host : 'localhost', //polling-app-mysql
+    host : 'localhost',
     dialect : 'mysql',
     operatorAliases:false,
     pool:{
