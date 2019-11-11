@@ -6,17 +6,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.post('/creditcard',async(req,resp)=>{
-    let{number,expirationdate} = req.body;
-    if(number && expirationdate){
-        resp.json({
-            message:`Creditcard payment succesfull`
-        });
-    }else{
-        resp.json({
-            message:`Creditcard payment unsuccessfull`
-        });
-    }
- 
+    resp.json({
+        message:`Creditcard payment succesfull`
+    }); 
 });
 
 app.listen(port,()=>{

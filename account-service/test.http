@@ -24,10 +24,10 @@ Content-Type: application/json
 }
 
 ###
-GET http://192.168.64.7:30175/
+GET http://192.168.64.7:31281/
 
 ###
-POST http://192.168.64.7:30175/register
+POST http://192.168.64.7:30029/register
 Content-Type: application/json
 
 {
@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://192.168.64.7:30467/login
+POST http://192.168.64.7:30029/login
 Content-Type: application/json
 
 {
