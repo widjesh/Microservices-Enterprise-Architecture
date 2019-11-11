@@ -30,19 +30,32 @@ public class OrderController {
     @Value("${ACCOUNT_SERVICE_PORT:3000}")
     private String accountServicePort;
 
-    @Autowired
     private IOrderRepository orderRepository;
 
-    @Autowired
     private IOrderItemRepository orderItemRepository;
 
-    @Autowired
     private RestTemplate restTemplate;
+
+    /**
+     * Instantiates a new Order controller.
+     *
+     * @param orderRepository     the order repository
+     * @param orderItemRepository the order item repository
+     * @param restTemplate        the rest template
+     */
+    @Autowired
+    public OrderController(IOrderRepository orderRepository,IOrderItemRepository orderItemRepository,RestTemplate restTemplate){
+        this.orderRepository = orderRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.restTemplate = restTemplate;
+    }
+
 
     /**
      * Post order response entity.
      *
      * @param order the order
+     * @param token the token
      *
      * @return the response entity
      */
@@ -68,12 +81,24 @@ public class OrderController {
         return orderObj;
     }
 
+    /**
+     * Get orders list.
+     *
+     * @return the list
+     */
     @GetMapping(value = "/order")
     public List<Order> getOrders(){
         return  this.orderRepository.findAll();
     }
 
 
+    /**
+     * Gets order.
+     *
+     * @param id the id
+     *
+     * @return the order
+     */
     @GetMapping(value = "/order/{id}")
     public Order getOrder(@PathVariable("id") long id){
         Order order = this.orderRepository.getOne(id);
