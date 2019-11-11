@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('node','root','Widjesh12',{ 
+const connection = new Sequelize('node','root','1234',{ //Pass 1234
   port : 3306,
-    host : 'localhost',
+    host : 'polling-app-mysql', //polling-app-mysql
     dialect : 'mysql',
     operatorAliases:false,
     pool:{

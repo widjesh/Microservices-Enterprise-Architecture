@@ -2,31 +2,23 @@
 
 containerID := $(shell docker ps -a -q --filter ancestor=widjesh/account-service:account-service)
 
-#===================  gradle  ===========================
-# clean:
-# 	./gradlew clean
-build: 
-	npm install
-run-local:
-	java -jar build/libs/ServiceA-*.jar
-
 #===================  docker  ===========================
-docker-build: build
-	docker build -t widjesh/account-service:account-service .
+docker-build: 
+	docker build -t widjesh/account-service:latest . 
 
 
 docker-run: docker-build
-	docker run -p 8080:8080 widjesh/account-service:account-service
+	docker run -p 8080:8080 widjesh/account-service:latest
 
 
 docker-login:
 	docker login
 
 docker-push: docker-login docker-build
-	docker push widjesh/account-service:account-service
+	docker push widjesh/account-service:latest
 
 docker-bash:
-	docker exec -ti widjesh/account-service:account-service /bin/sh
+	docker exec -ti widjesh/account-service:latest /bin/sh
 
 docker-containerID:
 	@echo running: $(containerID)

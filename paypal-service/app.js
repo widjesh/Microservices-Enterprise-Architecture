@@ -7,16 +7,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.post('/paypal',async(req,res)=>{
-    let {username,password} = req.body;
-    if(username && password){
-        res.json({
-            message:`Paid Succesfully with ${username}`
-        });
-    }else{
-        res.json({
-            message:`Payment unsuccessfull`
-        });
-    } 
+    res.json({
+        message:`Paid Succesfully with Paypal`
+    });
 });
 
 app.listen(port,()=>{

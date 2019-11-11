@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: account-service
-          image: widjesh/account-service:account-service
+          image: widjesh/account-service:latest
           ports:
             - containerPort: 3000
           env:
@@ -36,4 +36,9 @@ spec:
                 secretKeyRef:
                   name: account-service-secrets
                   key: service-api-key
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: account-service-secrets
+                  key: jwt-secret
            

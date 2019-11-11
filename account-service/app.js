@@ -61,14 +61,15 @@ app.post("/login", async (req, res) => {
             {
               email: users[0].email
             },
-            "TOPSECRET",
+            process.env.JWT_SECRET,
             {
               expiresIn: "1h"
             }
           );
           res.status(200).json({
-            message: "Auth Successfull",
-            token: token
+            message: "Auth Successfullest",
+            token: token,
+            message12:process.env.JWT_SECRET
           });
         }
       }
