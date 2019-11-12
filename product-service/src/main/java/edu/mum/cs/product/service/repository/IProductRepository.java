@@ -21,4 +21,13 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
      * @return the list
      */
     List<Product> findProductsByCategory(@Param("category") EProductCategory category);
+
+    /**
+     * Find products by product number product.
+     *
+     * @param productNumber the product number
+     *
+     * @return the product
+     */
+    Product findProductsByProductNumber(@Param("productNumber") String productNumber);
 }

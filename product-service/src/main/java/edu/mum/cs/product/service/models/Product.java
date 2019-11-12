@@ -19,6 +19,9 @@ public class Product {
     @Column(name = "ID")
     private long id;
 
+    @Column(name = "PRODUCT_NUMBER", nullable = false, unique = true)
+    private String productNumber;
+
     @Column(name = "NAME", nullable = false)
     private String name;
 

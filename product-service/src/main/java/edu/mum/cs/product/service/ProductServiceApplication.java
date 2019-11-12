@@ -12,6 +12,13 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class ProductServiceApplication {
 
+    /**
+     * Rest template rest template.
+     *
+     * @param builder the builder
+     *
+     * @return the rest template
+     */
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
