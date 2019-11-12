@@ -4,6 +4,7 @@ import edu.mum.cs.payment.service.models.EPaymentType;
 import edu.mum.cs.payment.service.models.Payment;
 import edu.mum.cs.payment.service.repository.IPaymentRepository;
 import edu.mum.cs.payment.service.template.MessageTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.Map;
 /**
  * The type Payment controller.
  */
+@Slf4j
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -63,15 +65,24 @@ public class PaymentController {
     }
 
     @PostMapping
-    public String paymentMade(@RequestBody Payment payment) {
+    public MessageTemplate paymentMade(@RequestBody Payment payment) {
+        MessageTemplate messageTemplateObj = new MessageTemplate();
         String url = generateUrl(payment.getPaymentType());
-        MessageTemplate messageTemplate  = restTemplate.postForObject(url, null, MessageTemplate.class);
-        if(messageTemplate != null && messageTemplate.getMessage() != null
-                && messageTemplate.getMessage().toLowerCase().contains("successfully")) {
-            this.paymentRepository.save(payment);
-            return "Payment recorded successfully";
-        }else{
-            return "Payment not recorded successfully";
+        try {
+            MessageTemplate messageTemplate = restTemplate.postForObject(url, null, MessageTemplate.class);
+            if (messageTemplate != null && messageTemplate.getMessage() != null
+                    && messageTemplate.getMessage().toLowerCase().contains("successfully")) {
+                this.paymentRepository.save(payment);
+                messageTemplateObj.setMessage("Payment recorded successfully");
+                return messageTemplateObj;
+            } else {
+                messageTemplateObj.setMessage("Payment not recorded successfully");
+                return messageTemplateObj;
+            }
+        }catch (Exception ex){
+            log.error("Connection refused : "+url);
+            messageTemplateObj.setMessage("Payment not recorded successfully");
+            return messageTemplateObj;
         }
     }
 
@@ -84,8 +95,8 @@ public class PaymentController {
             address = PROTOCOL + creditCardServiceIp + ":" + creditCardServicePort + "/" +
                     EPaymentType.CREDIT_CARD.getDescription();
         else
-            address = PROTOCOL + bankServiceIp + ":" + bankServicePort + "/" +
-                    EPaymentType.BANK_TRANSFER.getDescription();
+            address = PROTOCOL + payPalServiceIp + ":" + payPalServicePort + "/" +
+                    EPaymentType.PAY_PAL.getDescription();
         return address;
     }
 
