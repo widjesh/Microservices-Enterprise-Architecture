@@ -23,14 +23,14 @@ public class ShippingController{
 
     private IShippingRepository shippingRepository;
 
-    @PostMapping(value="/save")
+    @PostMapping(value="/save", produces = {"application/json;charset=UTF-8"})
     public String postShipping(@RequestBody Shipping shipping) {
         this.shippingRepository.save(shipping);
         return "Everything have been successfully shipped";
     }
 
     @GetMapping(value="/find")
-    public List<Shipping> getShippments() {
+    public List<Shipping> getShipments() {
         return this.shippingRepository.findAll();
     }
     
