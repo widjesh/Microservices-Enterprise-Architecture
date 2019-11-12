@@ -1,8 +1,11 @@
-package edu.mum.cs.order.service.template;
+package edu.mum.cs.order.service.templates;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+/**
+ * The type User.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {

@@ -1,5 +1,6 @@
 package edu.mum.cs.order.service.models;
 
+import edu.mum.cs.order.service.templates.Payment;
 import edu.mum.cs.order.service.templates.Product;
 import lombok.Data;
 
@@ -26,10 +27,6 @@ public class Order {
     @Column(name = "ORDER_DATE")
     private LocalDate orderDate = LocalDate.now();
 
-    @Column(name = "STATUS")
-    @Enumerated(EnumType.STRING)
-    private EOrderStatus status;
-
     @Column(name = "CUSTOMER_ID", nullable = false)
     private long customerId;
 
@@ -38,4 +35,10 @@ public class Order {
 
     @Transient
     private List<OrderItem> orderItemList;
+
+    @Transient
+    private Payment payment;
+
+    @Transient
+    private String message;
 }

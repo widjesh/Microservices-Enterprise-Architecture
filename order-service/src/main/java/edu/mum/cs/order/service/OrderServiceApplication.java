@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * The type Order service application.
+ *
  * @author nduwayofabrice
  * @version 1.0
  */

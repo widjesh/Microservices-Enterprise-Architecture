@@ -11,5 +11,12 @@ import java.util.List;
  */
 @Repository
 public interface IOrderItemRepository extends JpaRepository<OrderItem, Long> {
+    /**
+     * Find order item by order id list.
+     *
+     * @param orderId the order id
+     *
+     * @return the list
+     */
     List<OrderItem> findOrderItemByOrderId(final long orderId);
 }

@@ -28,7 +28,7 @@ public class OrderItem {
     @Column(name = "ORDER_ID", nullable = false)
     private long orderId;
 
-    @Column(name = "PRODUCT_ID", nullable = false)
-    private long productId;
+    @Column(name = "PRODUCT_NUMBER", nullable = false)
+    private String productNumber;
 
 }
