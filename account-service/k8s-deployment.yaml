@@ -41,4 +41,14 @@ spec:
                 secretKeyRef:
                   name: account-service-secrets
                   key: jwt-secret
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: account-service-secrets
+                  key: db_username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: account-service-secrets
+                  key: db_password
            

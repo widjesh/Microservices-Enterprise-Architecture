@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   User.findAll().then(users => {
     res.json(users);
-    
   });
 });
 
@@ -68,8 +67,7 @@ app.post("/login", async (req, res) => {
           );
           res.status(200).json({
             message: "Auth Successfullest",
-            token: token,
-            message12:process.env.JWT_SECRET
+            token: token
           });
         }
       }
@@ -77,10 +75,10 @@ app.post("/login", async (req, res) => {
   } catch (err) {}
 });
 
-app.get('/find/:email',async(req,res)=>{
+app.get("/find/:email", async (req, res) => {
   User.findAll({
-    email:req.params.email
-  }).then((users)=>{
+    email: req.params.email
+  }).then(users => {
     res.json(users[0]);
   });
 });

@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('node','root','1234',{ //Pass 1234
+const connection = new Sequelize('node',process.env.DB_USERNAME,process.env.DB_PASSWORD,{ 
   port : 3306,
-    host : 'polling-app-mysql', //polling-app-mysql
+    host : 'polling-app-mysql', 
     dialect : 'mysql',
     operatorAliases:false,
     pool:{
